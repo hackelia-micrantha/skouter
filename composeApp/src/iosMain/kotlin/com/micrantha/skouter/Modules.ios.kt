@@ -38,8 +38,6 @@ import org.kodein.di.delegate
 
 fun iosModules(app: UIApplicationController) = DI {
 
-    bindProviderOf(::ConnectivityStatus)
-
     bindSingleton { Platform(app) }
 
     bindProviderOf(::LabelCaptureAnalyzer)

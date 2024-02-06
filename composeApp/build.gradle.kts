@@ -20,7 +20,7 @@ kotlin {
             baseName = "bluebell"
         }
 
-        //pod("Reachability")
+        pod("Reachability")
         //pod("MediaPipeTasksVision")
         //podfile = project.file("../iosApp/Podfile")
     }

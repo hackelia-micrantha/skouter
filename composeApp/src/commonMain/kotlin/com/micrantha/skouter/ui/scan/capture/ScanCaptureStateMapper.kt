@@ -3,7 +3,7 @@ package com.micrantha.skouter.ui.scan.capture
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import com.micrantha.bluebell.data.Log
 import com.micrantha.bluebell.data.weightedRandomSample
-import com.micrantha.bluebell.ui.screen.StateMapper
+import com.micrantha.bluebell.domain.arch.StateMapper
 import com.micrantha.skouter.domain.model.Clue
 import com.micrantha.skouter.domain.model.Clues
 import com.micrantha.skouter.domain.model.LabelProof

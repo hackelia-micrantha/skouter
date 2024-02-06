@@ -4,13 +4,13 @@ import com.micrantha.bluebell.domain.arch.Action
 import com.micrantha.bluebell.domain.arch.Dispatcher
 import com.micrantha.bluebell.domain.arch.Effect
 import com.micrantha.bluebell.domain.arch.Reducer
+import com.micrantha.bluebell.domain.arch.StateMapper
 import com.micrantha.bluebell.domain.ext.busy
 import com.micrantha.bluebell.domain.ext.failure
 import com.micrantha.bluebell.domain.ext.status
 import com.micrantha.bluebell.domain.i18n.LocalizedRepository
 import com.micrantha.bluebell.ui.components.Router
 import com.micrantha.bluebell.ui.screen.ScreenContext
-import com.micrantha.bluebell.ui.screen.StateMapper
 import com.micrantha.bluebell.ui.screen.navigate
 import com.micrantha.skouter.domain.repository.GameRepository
 import com.micrantha.skouter.ui.component.Strings.LoadingGames

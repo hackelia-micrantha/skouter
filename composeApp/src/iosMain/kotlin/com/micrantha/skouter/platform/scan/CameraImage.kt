@@ -146,8 +146,4 @@ actual data class CameraImage constructor(
     }
 
     actual fun toImageBitmap(): ImageBitmap = toByteArray().toImageBitmap()
-
-    actual fun crop(rect: Rect): CameraImage {
-        return this
-    }
 }

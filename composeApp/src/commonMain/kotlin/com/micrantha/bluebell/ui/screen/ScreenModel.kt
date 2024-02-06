@@ -5,6 +5,7 @@ import cafe.adriel.voyager.core.model.screenModelScope
 import com.micrantha.bluebell.domain.arch.Action
 import com.micrantha.bluebell.domain.arch.Dispatch
 import com.micrantha.bluebell.domain.arch.Dispatcher
+import com.micrantha.bluebell.domain.arch.StateMapper
 import com.micrantha.bluebell.domain.arch.Stateful
 import com.micrantha.bluebell.domain.arch.Store
 import com.micrantha.bluebell.domain.flux.Flux
@@ -58,9 +59,6 @@ abstract class StatefulScreenModel<State>(
     override val state: StateFlow<State> = store.state
 }
 
-fun interface StateMapper<State, UiState> {
-    fun map(state: State): UiState
-}
 
 /**
  * Stateful view model that maps between internal state and ui state.

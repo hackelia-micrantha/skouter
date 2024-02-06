@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
     spec.vendored_frameworks      = 'build/cocoapods/framework/bluebell.framework'
     spec.libraries                = 'c++'
                 
-                
+    spec.dependency 'Reachability'
                 
     if !Dir.exist?('build/cocoapods/framework/bluebell.framework') || Dir.empty?('build/cocoapods/framework/bluebell.framework')
         raise "

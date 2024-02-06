@@ -1,8 +1,8 @@
 package com.micrantha.skouter.ui.thing.detail
 
 import com.micrantha.bluebell.domain.arch.Action
+import com.micrantha.bluebell.domain.arch.StateMapper
 import com.micrantha.bluebell.ui.screen.ScreenEnvironment
-import com.micrantha.bluebell.ui.screen.StateMapper
 
 class ThingDetailEnvironment : ScreenEnvironment<ThingDetailState> {
     override fun reduce(state: ThingDetailState, action: Action) = when (action) {

@@ -4,10 +4,11 @@ import com.benasher44.uuid.uuid4
 import com.micrantha.bluebell.data.Log
 import com.micrantha.bluebell.domain.arch.Action
 import com.micrantha.bluebell.domain.arch.Dispatcher
+import com.micrantha.bluebell.domain.arch.Effect
+import com.micrantha.bluebell.domain.arch.Reducer
+import com.micrantha.bluebell.domain.arch.StateMapper
 import com.micrantha.bluebell.ui.components.Router
 import com.micrantha.bluebell.ui.screen.ScreenContext
-import com.micrantha.bluebell.ui.screen.ScreenEnvironment
-import com.micrantha.bluebell.ui.screen.StateMapper
 import com.micrantha.skouter.domain.model.Clues
 import com.micrantha.skouter.ui.component.Choice
 import com.micrantha.skouter.ui.component.updateKey
@@ -29,7 +30,8 @@ class ScanEditEnvironment(
     private val context: ScreenContext,
     private val saveCaptureUseCase: SaveCaptureUseCase,
     private val getEditCaptureUseCase: GetEditCaptureUseCase,
-) : ScreenEnvironment<ScanEditState>,
+) : Reducer<ScanEditState>, Effect<ScanEditState>,
+    StateMapper<ScanEditState, ScanEditUiState>,
     Dispatcher by context.dispatcher,
     Router by context.router {
 
@@ -98,30 +100,29 @@ class ScanEditEnvironment(
         }
     }
 
-    companion object : StateMapper<ScanEditState, ScanEditUiState> {
+    override fun map(state: ScanEditState) = ScanEditUiState(
+        labels = state.labels?.map {
+            Choice(
+                label = it.value.display(),
+                tag = it.value.data,
+                key = it.key
+            )
+        } ?: emptyList(),
+        customLabel = state.customLabel,
+        colors = state.colors?.map {
+            Choice(
+                label = it.value.display(),
+                tag = it.value.data,
+                key = it.key
+            )
+        } ?: emptyList(),
+        customColor = state.customColor,
+        name = state.name ?: "",
+        image = state.image,
+        enabled = state.disabled.not()
+    )
 
-        override fun map(state: ScanEditState) = ScanEditUiState(
-            labels = state.labels?.map {
-                Choice(
-                    label = it.value.display(),
-                    tag = it.value.data,
-                    key = it.key
-                )
-            } ?: emptyList(),
-            customLabel = state.customLabel,
-            colors = state.colors?.map {
-                Choice(
-                    label = it.value.display(),
-                    tag = it.value.data,
-                    key = it.key
-                )
-            } ?: emptyList(),
-            customColor = state.customColor,
-            name = state.name ?: "",
-            image = state.image,
-            enabled = state.disabled.not()
-        )
-
+    companion object {
 
         private fun ScanEditState.asProof() = proof!!.copy(
             clues = Clues(

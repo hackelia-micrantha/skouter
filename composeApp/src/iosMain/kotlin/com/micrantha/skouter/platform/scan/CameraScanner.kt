@@ -60,10 +60,10 @@ import org.jetbrains.skia.Rect as RectF
 @Composable
 actual fun CameraScanner(
     modifier: Modifier,
-    regionOfInterest: Rect,
+    regionOfInterest: Rect?,
     onCameraImage: CameraScannerDispatch
 ) {
-    val stream = rememberCameraStream(regionOfInterest.toSkiaRect(), onCameraImage) ?: return
+    val stream = rememberCameraStream(regionOfInterest?.toSkiaRect(), onCameraImage) ?: return
 
     DisposableEffect(stream) {
 
